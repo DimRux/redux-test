@@ -2,5 +2,13 @@
   "todos": [
     { "id": 1, "title": "Learn Redux", "completed": false },
     { "id": 2, "title": "Build App", "completed": false }
+  ],
+  "users": [
+    { "id": 1, "name": "Alice" },
+    { "id": 2, "name": "Bob" }
+  ],
+  "comments": [
+    { "id": 1, "todoId": 1, "content": "Great job!" },
+    { "id": 2, "todoId": 2, "content": "Keep going!" }
   ]
 }
