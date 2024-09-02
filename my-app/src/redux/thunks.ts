@@ -2,8 +2,9 @@ import axios from 'axios';
 import { fetchTodosRequest, fetchTodosSuccess, fetchTodosFailure } from './actions';
 import { fetchUsersRequest, fetchUsersSuccess, fetchUsersFailure } from './actions';
 import { fetchCommentsRequest, fetchCommentsSuccess, fetchCommentsFailure } from './actions';
+import { AppDispatch } from './store';
 
-export const fetchAllDataThunk = () => async (dispatch) => {
+export const fetchAllDataThunk = () => async (dispatch: AppDispatch) => {
   dispatch(fetchTodosRequest());
   dispatch(fetchUsersRequest());
   dispatch(fetchCommentsRequest());
@@ -19,8 +20,10 @@ export const fetchAllDataThunk = () => async (dispatch) => {
     dispatch(fetchUsersSuccess(usersResponse.data));
     dispatch(fetchCommentsSuccess(commentsResponse.data));
   } catch (error) {
-    dispatch(fetchTodosFailure(error.message));
-    dispatch(fetchUsersFailure(error.message));
-    dispatch(fetchCommentsFailure(error.message));
+    if (error instanceof Error) {
+      dispatch(fetchTodosFailure(error.message));
+      dispatch(fetchUsersFailure(error.message));
+      dispatch(fetchCommentsFailure(error.message));
+    }
   }
 };

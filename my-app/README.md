@@ -6,3 +6,8 @@
 <p>npm run start</p>
 
 <p>Для изменения подхода снять/добавить комментарий в app.js и redux/store.js</p>
+
+Вопросы:
+index.js
+thunks.ts
+types.ts

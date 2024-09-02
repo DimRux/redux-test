@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppSelector, useAppDispatch } from './hooks/hooks';
 import { fetchAllDataThunk } from './redux/thunks';
 import {  fetchTodosRequest, fetchUsersRequest, fetchCommentsRequest, fetchAllDataRequest } from './redux/actions';
+import { RootState } from './redux/store';
+
 
 function App() {
-  const dispatch = useDispatch();
-  const { todos, users, comments, loading, error } = useSelector((state) => ({
+  const dispatch = useAppDispatch();
+  const { todos, users, comments, loading, error } = useAppSelector((state: RootState) => ({
     todos: state.todos.todos,
     users: state.users.users,
     comments: state.comments.comments,
