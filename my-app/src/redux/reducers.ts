@@ -1,10 +1,18 @@
 import { combineReducers } from "redux";
+import {
+  InitialTodosState,
+  InitialCommentsState,
+  InitialUersState,
+  actionTodos,
+  actionUsers,
+  actionComments,
+ } from "./types";
 
-const initialTodosState = { todos: [], loading: false, error: null };
-const initialUsersState = { users: [], loading: false, error: null };
-const initialCommentsState = { comments: [], loading: false, error: null };
+const initialTodosState: InitialTodosState = { todos: [], loading: false, error: null };
+const initialUsersState: InitialUersState = { users: [], loading: false, error: null };
+const initialCommentsState: InitialCommentsState = { comments: [], loading: false, error: null };
 
-const todosReducer = (state = initialTodosState, action) => {
+const todosReducer = (state = initialTodosState, action: actionTodos ) => {
   switch (action.type) {
     case "FETCH_TODOS_REQUEST":
       return { ...state, loading: true, error: null };
@@ -17,7 +25,7 @@ const todosReducer = (state = initialTodosState, action) => {
   }
 };
 
-const usersReducer = (state = initialUsersState, action) => {
+const usersReducer = (state = initialUsersState, action: actionUsers) => {
   switch (action.type) {
     case 'FETCH_USERS_REQUEST':
       return { ...state, loading: true, error: null };
@@ -30,7 +38,7 @@ const usersReducer = (state = initialUsersState, action) => {
   }
 };
 
-const commentsReducer = (state = initialCommentsState, action) => {
+const commentsReducer = (state = initialCommentsState, action: actionComments) => {
   switch (action.type) {
     case 'FETCH_COMMENTS_REQUEST':
       return { ...state, loading: true, error: null };

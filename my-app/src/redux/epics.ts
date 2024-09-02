@@ -1,12 +1,13 @@
 import { ofType, combineEpics } from 'redux-observable';
 import { mergeMap, catchError } from 'rxjs/operators';
-import { of, forkJoin } from 'rxjs';
+import { of, forkJoin, Observable } from 'rxjs';
 import axios from 'axios';
 import { fetchTodosSuccess, fetchTodosFailure } from './actions';
 import { fetchUsersSuccess, fetchUsersFailure } from './actions';
 import { fetchCommentsSuccess, fetchCommentsFailure } from './actions';
+import { ActionAll } from './types';
 
-const fetchTodosEpic = (action$) =>
+const fetchTodosEpic = (action$: Observable<ActionAll>) => 
   action$.pipe(
     ofType('FETCH_TODOS_REQUEST'),
     mergeMap(() =>
@@ -17,7 +18,7 @@ const fetchTodosEpic = (action$) =>
     )
   );
 
-const fetchUsersEpic = (action$) =>
+const fetchUsersEpic = (action$: Observable<ActionAll>) =>
   action$.pipe(
     ofType('FETCH_USERS_REQUEST'),
     mergeMap(() =>
@@ -28,7 +29,7 @@ const fetchUsersEpic = (action$) =>
     )
   );
 
-const fetchCommentsEpic = (action$) =>
+const fetchCommentsEpic = (action$: Observable<ActionAll>) =>
   action$.pipe(
     ofType('FETCH_COMMENTS_REQUEST'),
     mergeMap(() =>
@@ -39,7 +40,7 @@ const fetchCommentsEpic = (action$) =>
     )
   );
 
-const fetchAllDataEpic = (action$) =>
+const fetchAllDataEpic = (action$: Observable<ActionAll>) =>
   action$.pipe(
     ofType('FETCH_ALL_DATA_REQUEST'),
     mergeMap(() =>
@@ -58,4 +59,4 @@ const fetchAllDataEpic = (action$) =>
     )
   );
 
-export const rootEpic = combineEpics(fetchTodosEpic, fetchUsersEpic, fetchCommentsEpic, fetchAllDataEpic);
+export const rootEpic = combineEpics<ActionAll>(fetchTodosEpic, fetchUsersEpic, fetchCommentsEpic, fetchAllDataEpic);
